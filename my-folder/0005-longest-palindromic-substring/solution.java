@@ -10,11 +10,11 @@ class Solution {
             return s;
         }
 
-        for(int i=1;i<s.length();i+=1)
+        for(int i=0;i<s.length();i+=1)
         {
             //odd cases
-            low = i-1;
-            high = i+1;
+            low = i;
+            high = i;
 
             while (low >= 0 && high < s.length() && s.charAt(low) == s.charAt(high))
             {
