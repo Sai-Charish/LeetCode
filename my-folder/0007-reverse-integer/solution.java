@@ -1,27 +1,38 @@
 class Solution {
     public int reverse(int x) {
-        int max = Integer.MAX_VALUE;
+        boolean neg = (x>0) ? false : true;
+
         int min = Integer.MIN_VALUE;
+        int max = Integer.MAX_VALUE;
 
-       
+        if(neg)
+        {
+            x = Math.abs(x);
+        }
 
-        long res=0;
-        int temp;
+        long res = 0;
+        int temp = x;
         int digit;
-        temp = x;
-        while(temp!=0)
-        {
-            digit = temp%10;
-            res = (res*10)+digit;
-            temp/=10;
-        }
         
-        if(res > max || res < min)
+        while(temp > 0)
         {
-            return 0;
+            digit = temp % 10;
+            res = (res * 10 ) + digit ;
+            temp = temp /10;
         }
 
-        return (int)res;
-        
+        if(neg)
+        {
+            res = res * -1;
+        }
+
+        // System.out.println(res);
+
+        return (res<= max && res>=min) ? (int) res : 0;
+
+
+
+      
+
     }
 }
