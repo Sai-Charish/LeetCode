@@ -1,26 +1,23 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if(x<0)
+        if(x < 0)
         {
             return false;
         }
 
-        int temp;
-        int res = 0;
+        int temp = x;
         int digit;
-    
-        temp = x;
-        while(temp!=0)
+        long res = 0;
+
+        while(temp > 0)
         {
             digit = temp%10;
             res = (res*10) + digit;
-            temp/=10;
+            temp = temp/10;
         }
 
-        if(res == x)
-        {
-            return true;
-        }
-        return false;
+        System.out.println(res);
+    
+        return (x == (int) res) ? true : false;   
     }
 }
