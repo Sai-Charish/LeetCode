@@ -1,22 +1,29 @@
 class Solution {
     public double myPow(double x, int n) {
-        if(x == 1) return x;
-        double res = 1;
-        Boolean negitive = (n<0) ? true : false;
+        long a = n;
+        if(a<0) a = a*-1;
+        double ans = helper(x,a);
 
-        long a = (negitive) ? -(long)n : n;
-        System.out.println(a);
+        if(n<0) return 1/ans;
+        return ans;
+    }
 
-        while(a > 0)
+    public double helper(double x,long n)
+    {
+        if(n == 0) return 1;
+
+        double res = helper(x,n/2);
+
+        if(n%2 == 0)
         {
-            if(a%2 == 1)
-            {
-                res = res*x;
-            }
-            x = x * x;
-            a = a/2;
+            res = res * res;
+        }
+        else
+        {
+            res = res * res * x;
         }
 
-        return (negitive) ? 1/res : res; 
+        return res;
+
     }
 }
