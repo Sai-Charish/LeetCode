@@ -1,54 +1,24 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+import java.util.*;
+
 class Solution {
     public ListNode modifiedList(int[] nums, ListNode head) {
-        HashMap <Integer,Integer> map = new HashMap<>();
-
-        for(int i=0;i<nums.length;i+=1)
-        {
-            map.put(nums[i],1);
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
         }
 
-        System.out.println(map);
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
 
-        ListNode temp = head;
-        ListNode prev = temp;
-        ListNode current;
-
-        while(temp  != null)
-        {
-            if(temp == head && map.containsKey(temp.val))
-            {
-                head = head.next;
-                
+        while (curr.next != null) {
+            if (set.contains(curr.next.val)) {
+                curr.next = curr.next.next; // remove node
+            } else {
+                curr = curr.next; // move forward
             }
-            else if(temp.next !=null && map.containsKey(temp.val))
-            {
-                current = temp;
-                temp = temp.next;
-                prev.next = temp;
-                current.next = null;
-                temp = prev; 
-            }
-            else if(temp.next == null && map.containsKey(temp.val))
-            {
-                prev.next = null;
-            }
-            prev = temp;
-            temp = temp.next;
-            
         }
 
-
-
-        return head;
+        return dummy.next;
     }
 }
