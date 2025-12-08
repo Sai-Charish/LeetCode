@@ -18,13 +18,15 @@ class Solution {
         return helper(nums,0,nums.length-1);
     }
 
-    public TreeNode helper(int[] nums,int start,int end){
-        if(start > end) return null;
+    public TreeNode helper(int [] nums, int low,int high){
+        if(low > high){
+            return null;
+        }
 
-        int mid = (start+end)/2;
+        int mid = low + (high-low)/2;
         TreeNode root = new TreeNode(nums[mid]);
-        TreeNode left = helper(nums,start,mid-1);
-        TreeNode right = helper(nums,mid+1,end);
+        TreeNode left = helper(nums,low,mid-1);
+        TreeNode right = helper(nums,mid+1,high);
 
         root.left = left;
         root.right = right;
